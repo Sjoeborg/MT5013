@@ -1,0 +1,44 @@
+---
+title: "HW1"
+output: github_document
+---
+## Previous experience
+I have used R for matrix operations as a supplement to SQl querying at an internship. I have experience in the other tools.
+
+
+## Inflation rate vs stored cash at the central bank
+Data has been downloaded from SCB in Excel format. Empty lines and comments were removed, the tables transposed, and the data exported to a csv file.
+The data refers to the inflation rate (KPIF) for the months 2008M01 to 2019M08, as well as Sweden's three major banks' reported funds at the Riksbank.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(reshape2)
+RB <- read_csv(file = "RB.csv")
+```
+
+## Results
+```{r, echo=FALSE}
+ggplot(RB,aes(x=Rate,y=SWED))+
+    geom_point()+
+    scale_y_log10()
+
+
+
+
+ggplot(RB,aes(x=Rate,y=SEB))+
+    geom_point()+
+    scale_y_log10()
+
+
+
+
+ggplot(RB,aes(x=Rate,y=SHB))+
+    geom_point()+
+    scale_y_log10()
+
+```
+```{r}
+sessionInfo()
+```
+
